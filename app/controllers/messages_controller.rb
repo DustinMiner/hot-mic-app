@@ -1,8 +1,7 @@
 class MessagesController < ApplicationController
-  class MessagesController < ApplicationController
   before_action :authenticate_user!
 
-    def create
+   def create
     message = Message.new(user_id: current_user.id, content: params[:content])
 
     if message.save
@@ -27,3 +26,6 @@ class MessagesController < ApplicationController
       end
     end
   end
+end
+
+

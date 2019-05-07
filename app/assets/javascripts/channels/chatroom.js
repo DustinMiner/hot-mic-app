@@ -9,7 +9,7 @@ $(document).ready(function() {
       },
 
       // Now let's make the received function append to the page and then scroll down.
-      {
+  {
         received: function(data) {
           $.ajax({
             url: "/get_current_user",
@@ -43,6 +43,6 @@ $(document).ready(function() {
           });
         }
       }
-    );
-  });
-});
+
+
+

@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  class ApplicationController < ActionController::Base
   before_action :authenticate_user!, only: [:get_current_user]
 
   def get_current_user
@@ -7,4 +6,3 @@ class ApplicationController < ActionController::Base
   end
 end
 
-end
