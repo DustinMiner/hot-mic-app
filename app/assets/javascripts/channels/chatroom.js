@@ -1,3 +1,14 @@
+$(document).ready(function() {
+  $('[data-channel-subscribe="chatroom"]').each(function(index, element) {
+    // Let's select the message-div so that we can append the new message to it.
+    var $messageDiv = $('#message-div');
+
+    App.cable.subscriptions.create(
+      {
+        channel: "ChatroomChannel",
+      },
+
+      // Now let's make the received function append to the page and then scroll down.
       {
         received: function(data) {
           $.ajax({
@@ -32,4 +43,6 @@
           });
         }
       }
-
+    );
+  });
+});
