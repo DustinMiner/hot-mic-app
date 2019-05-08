@@ -1,5 +1,4 @@
 class ChatroomConnectionsController < ApplicationController
-  class ChatroomConnectionsController < ApplicationController
   before_action :authenticate_user!
 
   def create
@@ -9,4 +8,3 @@ class ChatroomConnectionsController < ApplicationController
   end
 end
 
-end
