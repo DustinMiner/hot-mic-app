@@ -14,8 +14,6 @@ $(document).ready(function() {
         chatroom_id: chatroom_id
       },
 
-
-      // Now let's make the recieved function append to the page and then scroll down.
       {
         received: function(data) {
           $.ajax({
