@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TestActionCableApp</title>
+    <title>Hot Mic Chat App</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,18 +13,24 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">Chat App</a>
+    <nav class="navbar navbar-expand-lg navbar-dark"> <!-- navbar-dark bg-dark"> -->
+      <a class="navbar-brand" href="/"> Hot Mic</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                 <ul class="navbar-nav">
           <% if user_signed_in? %>
             <% current_user.chatrooms.each do |chatroom| %>
               <li class="nav-item">
                 <%= link_to("/chatrooms/#{chatroom.id}", class: "nav-link") do %>
                   <%= chatroom.name %>
+                  <!-- The below "if" statement will only create the span element that subscribes to notifications if this isn't the chatroom you're currently in -->
+                  <% if !current_page?("/chatrooms/#{chatroom.id}") %>
+
+                    <!-- This span element will tell our channel JavaScript to subscribe to the notifications channel for this Chatroom -->
+                    <span data-channel-subscribe="notification" data-chatroom-id="<%= chatroom.id %>" class="badge badge-primary"><%= chatroom.chatroom_connections.find_by(user_id: current_user.id).new_message ? 'new' : '' %></span>
+                  <% end %>
                 <% end %>
               </li>
             <% end %>
@@ -36,6 +42,7 @@
             </li>
           <% end %>
         </ul>
+
 
       </div>
     </nav>

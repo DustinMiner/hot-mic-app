@@ -8,9 +8,11 @@ class ChatroomsController < ApplicationController
 
   def show
     @chatroom = Chatroom.find(params[:id])
-
-   end
+    chatroom_connection = ChatroomConnection.find_by(chatroom_id: @chatroom.id, user_id: current_user.id)
+    chatroom_connection.update(new_message: false)
   end
+end
+
 
 
 

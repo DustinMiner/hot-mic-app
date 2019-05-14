@@ -1,6 +1,8 @@
 $(document).ready(function() {
   $('[data-channel-subscribe="chatroom"]').each(function(index, element) {
     var $messageDiv = $('#message-div');
+    var $token = $('meta[name="csrf-token"]').prop("content");
+
 
     // We need to select the id of the chatroom that we're currently viewing. We'll use this when we establish the connection in order to ensure that we're streaming from the correct chatroom.
     var chatroom_id = $(element).data('chatroom-id');
@@ -14,6 +16,7 @@ $(document).ready(function() {
         chatroom_id: chatroom_id
       },
 
+
       {
         received: function(data) {
           $.ajax({
@@ -21,10 +24,11 @@ $(document).ready(function() {
             type: "get",
             dataType: "json",
             success: function(response) {
+              console.log(response);
               if (response.current_user_id === data.user.id) {
                 var $newMessage = $(`
                   <div class="message my-message ml-auto">
-                    <big>${data.user.email}</big>
+                    <big>${data.user.username}</big>
                     <br>
                     <small>${data.message.content}</small>
                   </div>
@@ -32,7 +36,7 @@ $(document).ready(function() {
               } else {
                 var $newMessage = $(`
                   <div class="message other-user-message mr-auto">
-                    <big>${data.user.email}</big>
+                    <big>${data.user.username}</big>
                     <br>
                     <small>${data.message.content}</small>
                   </div>
