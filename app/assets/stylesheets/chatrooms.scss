@@ -23,10 +23,15 @@
 }
 
 .chatroom-index {
-  border: 2px solid #007AFF;
+  border: 4px solid #486311;
   padding: 2.5px;
   margin: 2.5px;
   position: relative;
+  color: black;
+
+}
+.text-center {
+  color: black;
 }
 
 .navbar  {
@@ -34,6 +39,11 @@
 
 
 }
+
+.field {
+  padding: 5px;
+}
+
 
 
 

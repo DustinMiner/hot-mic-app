@@ -1,8 +1,10 @@
+  <div>
 <div class="chatroom" data-channel-subscribe="chatroom" data-chatroom-id="<%= @chatroom.id %>">
   <h1><%= @chatroom.name %></h1>
   <div id="message-div">
     <% @chatroom.messages.each do |message| %>
       <div class="message <%= message.user.id == current_user.id ? 'my-message ml-auto' : 'other-user-message mr-auto' %>">
+
         <big><%= message.user.username %></big>
         <br>
         <small><%= message.content %></small>
@@ -10,7 +12,6 @@
     <% end %>
   </div>
 
-  <div>
     <%= form_tag("/message", method: :post) do %>
       <div class="form-group">
         <%= label_tag(:content, "Write a message:") %>
